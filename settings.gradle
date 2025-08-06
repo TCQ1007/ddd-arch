@@ -1,0 +1,5 @@
+rootProject.name = 'ddd-arch'
+include 'ddd-annotation'
+include 'app'
+include 'ddd-core'
+include 'ddd-repository-delegate-processor'
