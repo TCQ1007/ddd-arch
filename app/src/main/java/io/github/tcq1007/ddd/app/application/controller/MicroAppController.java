@@ -34,4 +34,10 @@ public class MicroAppController implements IMicroAppController {
                 MicroAppQueryFactory.build(requestDTO.getQuery()), pageable);
         return ResponseEntity.ok(new PagedModel<>(page));
     }
+
+    @Override
+    public ResponseEntity<Void> delete(BasePageRequest<MicroAppQueryRequestDTO> requestDTO) {
+        microAppService.remove(requestDTO.getQuery().getId());
+        return ResponseEntity.ok().build();
+    }
 }

@@ -14,4 +14,6 @@ public interface MicroAppService {
     List<MicroAppQueryResponseDTO> query(MicroAppBOQuery query);
 
     Page<MicroAppQueryResponseDTO> pageQuery(MicroAppBOQuery query, Pageable pageable);
+
+    void remove(String id);
 }

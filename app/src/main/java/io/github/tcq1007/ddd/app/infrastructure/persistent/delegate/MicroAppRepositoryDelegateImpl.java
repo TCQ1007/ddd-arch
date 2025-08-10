@@ -42,9 +42,15 @@ public class MicroAppRepositoryDelegateImpl
 
     @Override
     public Page<MicroAppBO> pageQuery(MicroAppBOQuery query, Pageable pageable) {
+
         return getEntityRepository().findAll(
                         query != null ? hasSpecification(query) ? specification(query) : null : null, pageable)
                 .map(e -> conversionService.convert(e, getBOClass()));
+    }
+
+    @Override
+    public void removeById(String id) {
+        getEntityRepository().deleteById(id);
     }
 
     @Override

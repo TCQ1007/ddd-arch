@@ -44,4 +44,15 @@ public interface IMicroAppController {
             @Parameter(description = "MicroApp query request")
             @Valid @RequestBody BasePageRequest<MicroAppQueryRequestDTO> requestDTO
     );
+
+    @Operation(summary = "Query MicroApp list",
+            description = "Gets paginated list of FAQ items")
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "successful operation",
+            content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = MicroAppQueryRequestDTO.class))})
+    @PostMapping(value = "/remove/v1", consumes = {"application/json"})
+    ResponseEntity<Void> delete(
+            @Parameter(description = "MicroApp query request")
+            @Valid @RequestBody BasePageRequest<MicroAppQueryRequestDTO> requestDTO
+    );
 }

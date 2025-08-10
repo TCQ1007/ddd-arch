@@ -24,6 +24,8 @@ public interface MicroAppBoRepository extends BaseBORepository<MicroAppBO> {
     @DelegateMethod(jpaMethodName = "findAll")
     Page<MicroAppBO> pageQuery(MicroAppBOQuery query, Pageable pageable);
 
+    void removeById(String id);
+
     @Override
     default Class<MicroAppBO> getBOClass() {
         return MicroAppBO.class;

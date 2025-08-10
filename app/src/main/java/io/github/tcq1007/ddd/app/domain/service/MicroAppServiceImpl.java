@@ -39,7 +39,13 @@ public class MicroAppServiceImpl implements MicroAppService {
 
     @Override
     public Page<MicroAppQueryResponseDTO> pageQuery(MicroAppBOQuery query, Pageable pageable) {
+
         Page<MicroAppBO> microAppBoPage = microAppBoRepository.pageQuery(query, pageable);
         return microAppBoPage.map(microAppBoToDtoMapper::boToDto);
+    }
+
+    @Override
+    public void remove(String id) {
+        microAppBoRepository.removeById(id);
     }
 }
