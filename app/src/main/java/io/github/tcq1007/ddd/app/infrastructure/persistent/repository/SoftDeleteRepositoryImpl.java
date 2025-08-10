@@ -104,10 +104,6 @@ public class SoftDeleteRepositoryImpl<T extends SoftDeleteable,ID> extends Simpl
     @Transactional
     public void deleteById(ID id) {
         Assert.notNull(id, ID_MUST_NOT_BE_NULL);
-
-        findById(id).ifPresent(this::delete);
-
-
         entityManager.createQuery(deleteByIdQueryString.get()).setParameter("id", id).executeUpdate();
     }
 
@@ -174,6 +170,9 @@ public class SoftDeleteRepositoryImpl<T extends SoftDeleteable,ID> extends Simpl
     @Transactional
     public void deleteAllInBatch(Iterable<T> entities) {
         Assert.notNull(entities, ENTITIES_MUST_NOT_BE_NULL);
+        if (!entities.iterator().hasNext()) {
+            return;
+        }
         deleteAll(entities);
     }
 
